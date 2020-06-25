@@ -1,0 +1,9 @@
+<h2>눈송코인 다이아 가격</h2>
+<h1>{{num.number}}개</h1>
+<h2>마지막 변동시각 : {{num.created_at|date:"n월 j일 h시 i분 기준"}}</h2>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'change' %}">주가 바꾸기</a>
+{% else %}
+    <a href="{% url 'login' %}">메가커피 로그인</a>
+{% endif %}

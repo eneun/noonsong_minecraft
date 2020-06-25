@@ -1,0 +1,6 @@
+<form method='POST' action="{% url 'login' %}">
+    {% csrf_token %}
+    username:<input name='username'/><br/>
+    password:<input name='password' type='password'><br/>
+    <input type='submit' value='제출'/>
+</form>
