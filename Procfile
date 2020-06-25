@@ -1,0 +1,1 @@
+web: gunicorn randomproject.wsgi --log-file -
