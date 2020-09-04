@@ -47,3 +47,29 @@ def fever(request):
     numbers.delete()
     Number.objects.create(number=num)
     return redirect('result')
+
+def generate():
+    import random
+    change = random.randrange(1, 10)
+    if change == 1:
+        pass
+    elif change == 2:
+        pass
+    elif change == 3:
+        pass
+    else:
+        ran_num = random.randrange(1, 11)
+        if ran_num == 1:
+            num = 1
+        elif ran_num in range(2,4): # 2, 3
+            num = 2
+        elif ran_num in range(4, 8): # 4, 5, 6, 7
+            num = 3
+        elif ran_num in range(9, 10): # 8, 9
+            num = 4
+        else: # 10
+            num = 5
+        numbers = Number.objects.all()
+        numbers.delete()
+        Number.objects.create(number=num)
+        return redirect('result')
