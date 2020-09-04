@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 ]
 
 CRONJOBS = [
-    ('*/1 * * * *', 'picker.views.generate')
+    ('* */6 * * *', 'picker.views.generate')
 ]
 
 MIDDLEWARE = [
