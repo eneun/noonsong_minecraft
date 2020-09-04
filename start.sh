@@ -13,5 +13,6 @@ cd noonsong_minecraft
 pip3 install -r requirements.txt
 python3 manage.py migrate
 python3 manage.py collectstatic
+python3 manage.py crontab remove
 python3 manage.py crontab add
 python3 manage.py runserver 0:80
