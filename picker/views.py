@@ -1,10 +1,34 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Number
+from .models import Number, Reservation
 
 # Create your views here.
 def result(request):
     num = Number.objects.last()
     return render(request, 'result.html', {'num': num})
+
+def reservation(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        value = Number.objects.last().number
+        reservation = Reservation.objects.create(name=name, value=value)
+        return redirect('reservation')
+    else:
+        reservations = Reservation.objects.all()
+        return render(request, 'reservation.html', {'reservations': reservations})
+
+def completion(request, id):
+    reservation = get_object_or_404(Reservation, pk=id)
+    if reservation.status == False:
+        reservation.status = True
+    else:
+        reservation.status = False
+    reservation.save()
+    return redirect('reservation')
+
+def delete(request):
+    reservations = Reservation.objects.filter(status=True)
+    reservations.delete()
+    return redirect('reservation')
 
 def change(request):
     import random

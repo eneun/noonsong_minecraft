@@ -26,7 +26,13 @@ def login(request):
         user = auth.authenticate(request, username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('result')
+            return redirect('reservation')
         else:
             return render(request, 'login.html')
     return render(request, 'login.html')
+
+def logout(request):
+    if request.method == 'POST':
+        auth.logout(request)
+        return redirect('result')
+    return render(request, 'accounts/signup.html')
