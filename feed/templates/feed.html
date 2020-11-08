@@ -30,7 +30,7 @@
                     {% for f in feeds %}
                     <tr>
                         <th scope="row">{{f.name}}</th>
-                        <td><a href="{% url 'detail' f.id %}">{{f.content}}</a></td>
+                        <td><a href="{% url 'detail' f.id %}">{{f.content}} ..({{f.comment_set.count}})</a></td>
                     </tr>
                     {% endfor %}
                     
