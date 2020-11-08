@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 import picker.views
 import account.views
+import feed.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('picker.urls')),
     path('account/', include('account.urls')),
+    path('feed/', include('feed.urls')),
 ]

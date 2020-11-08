@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'picker',
     'django_crontab',
     'account',
+    'feed',
 ]
 
 CRONJOBS = [

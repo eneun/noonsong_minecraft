@@ -1,0 +1,41 @@
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+
+    <div class="mx-auto mt-5" style="max-width: 80%;">
+        <a href="{% url 'feed' %}" class="mx-auto" style="font-size: 2.5rem;">뒤로가기</a>
+    </div>
+
+    <div class="card border-primary my-3 mx-auto" style="max-width: 80%; border-width: 5px;">
+        <div class="card-body text-primary">
+            <p style="font-size: 3rem; color: black;">작성자 : {{feed.name}}</p>
+            <p style="font-size: 2rem; color: grey">{{feed.created_at|date:"n월 j일 H시 i분"}}</p>
+            <hr/>
+            <p style="font-size: 2.5rem; color: black;">{{feed.content}}</p>
+        </div>
+    </div>
+    <div class="card border-primary mb-3 mx-auto" style="max-width: 80%; border-width: 5px;">
+        <div class="card-body text-primary">
+            <form action="{% url 'createcomment' feed.id %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-3">
+                        <input type="text" name="name" class="form-control" style="font-family: 'Do Hyeon', sans-serif; font-size: 3rem;" placeholder="이름">
+                    </div>
+                    <div class="col">
+                        <input type="text" name="content" class="form-control" style="font-family: 'Do Hyeon', sans-serif; font-size: 3rem;" placeholder="댓글내용">
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-primary btn-block" style="font-family: 'Do Hyeon', sans-serif; font-size: 3rem;">등록</button>
+                    </div>
+                </div>
+            </form>
+            {% for comment in feed.comment_set.all %}
+                <p style="font-size: 2.5rem; color: black;">{{comment.name}} : {{comment.content}}</p>
+                <p style="font-size: 2rem; color: grey">{{comment.created_at|date:"n월 j일 H시 i분"}}</p>
+            {% endfor %}
+        </div>
+        
+    </div>
+    {% endblock %}
+</body>

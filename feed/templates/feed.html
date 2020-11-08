@@ -1,0 +1,42 @@
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <p class='text-center mt-5' style="font-family: 'Black Han Sans', sans-serif; font-size: 5rem;">피 드</p>
+    
+    <div class="card border-primary mb-3 mx-auto" style="max-width: 80%; border-width: 5px;">
+        <div class="card-body text-primary">
+            <form action="{% url 'feed' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="name" class="form-control mb-3" style="font-family: 'Do Hyeon', sans-serif; font-size: 3rem;" placeholder="이름">
+                <textarea name="content" class="form-control mb-3" style="font-family: 'Do Hyeon', sans-serif; font-size: 3rem;" placeholder="내용"></textarea>
+                <button type="submit" class="btn btn-primary btn-block" style="font-family: 'Do Hyeon', sans-serif; font-size: 3rem;">등록</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card border-primary mb-3 mx-auto" style="max-width: 80%; border-width: 5px;">
+        <div class="card-body text-primary">
+            <table class="table" style="font-size: 2.5rem;">
+            {% if user.is_authenticated %}
+                    <a href="{% url 'clearfeed' %}" class="btn btn-secondary btn-block" style="font-size: 3rem; color: white;">전체 삭제하기</a>
+                {% endif %}
+                <thead>
+                    <tr>
+                        <th scope="col">이름</th>
+                        <th scope="col" style="width: 80%;">내용</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for f in feeds %}
+                    <tr>
+                        <th scope="row">{{f.name}}</th>
+                        <td><a href="{% url 'detail' f.id %}">{{f.content}}</a></td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+                </table>    
+        </div>
+    </div>
+    {% endblock %}
+</body>
